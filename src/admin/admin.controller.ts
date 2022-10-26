@@ -19,6 +19,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from '../roles/roles.guard';
 import { infinityPagination } from '../utils/infinity-pagination';
 import { CreateAdminDto } from './dto/create-admin.dto';
+import { AdminGuard } from './admin.guard';
 
 @ApiBearerAuth()
 @ApiTags('Admin')
@@ -28,10 +29,9 @@ import { CreateAdminDto } from './dto/create-admin.dto';
 })
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
-
+  // @Roles(RoleEnum.superuser)
+  // @UseGuards(AuthGuard('jwt'), RolesGuard, AdminGuard)
   @Post()
-  @Roles(RoleEnum.superuser)
-  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createAdminDto: CreateAdminDto) {
     return this.adminService.create(createAdminDto);
@@ -39,7 +39,7 @@ export class AdminController {
 
   @Get()
   @Roles(RoleEnum.superuser)
-  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @UseGuards(AuthGuard('jwt'), RolesGuard, AdminGuard)
   @HttpCode(HttpStatus.OK)
   async findAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,

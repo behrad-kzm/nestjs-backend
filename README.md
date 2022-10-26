@@ -45,6 +45,13 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Links
+
+Swagger: http://localhost:3000/docs
+
+Adminer (client for DB): http://localhost:8080
+
+
 ## Test
 
 ```bash

@@ -8,7 +8,7 @@ import { AppModule } from './app.module';
 import validationOptions from './utils/validation-options';
 
 async function bootstrap() {
-  console.log('Process env', process.env.NODE_ENV, process.env.DATABASE_USERNAME);
+  
   const app = await NestFactory.create(AppModule, { cors: true });
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const configService = app.get(ConfigService);

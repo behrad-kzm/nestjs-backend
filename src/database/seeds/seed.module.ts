@@ -6,6 +6,7 @@ import databaseConfig from '../../config/database.config';
 import { DataSource } from 'typeorm';
 import { TypeOrmConfigService } from '../typeorm-config.service';
 import { AdminSeedModule } from './admin/admin-seed.module';
+import { RoleSeedModule } from './role/role-seed.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AdminSeedModule } from './admin/admin-seed.module';
       },
     }),
     AdminSeedModule,
+    RoleSeedModule,
   ],
 })
 export class SeedModule {}
